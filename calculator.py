@@ -1,8 +1,8 @@
-# Simple calculator with intentional bugs
 
-def add(a, b)
-    result = a + b
-    # Missing return statement
+import math
+
+def add(a, b):
+    return a + b
 
 def subtract(x, y):
     return x - y
@@ -11,27 +11,29 @@ def multiply(a, b):
     return a * b
 
 def divide(num, denom):
-    return num / denom  # No zero division check
+    if denom == 0:
+        raise ValueError('Cannot divide by zero')
+    return num / denom
 
 def power(base, exp):
-    if exp = 0:  # Wrong operator, should be ==
+    if exp == 0:
         return 1
     return base ** exp
 
 def calculate_average(numbers):
+    if len(numbers) == 0:
+        raise ValueError('Cannot calculate average of empty list')
     total = sum(numbers)
-    return total / len(numbers)  # No check for empty list
+    return total / len(numbers)
 
 def factorial(n):
     if n < 0:
-        return "Error"  # Should raise exception, not return string
+        raise ValueError('Factorial is not defined for negative numbers')
     if n == 0:
         return 1
     return n * factorial(n - 1)
 
-# Unused import
-import os
-import math
-
 def get_percentage(part, whole):
-    return (part / whole) * 100  # No zero check for whole
+    if whole == 0:
+        raise ValueError('Cannot calculate percentage with zero whole')
+    return (part / whole) * 100
